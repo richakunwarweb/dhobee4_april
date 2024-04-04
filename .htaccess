@@ -1,0 +1,31 @@
+# RewriteEngine On
+# RewriteCond %{REQUEST_FILENAME} !-f
+# RewriteRule ^(.*)$ /custom_404.html [L]
+
+
+
+#Redirection code starts
+RewriteEngine On
+
+# Redirect HTTP to HTTPS
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+#Redirection code Ends
+ErrorDocument 404 /404.html
+
+Redirect 301 /dhobee.ae /dhobeeuae.com
+Redirect 301 /housekeeping-services-dubai /housekeeping-services-in-uae.html
+Redirect 301 /deep-cleaning-services-dubai /deep-cleaning-service-uae.html
+Redirect 301 /carpet-cleaning-servicesp-dubai /carpet-cleaning-service-in-uae.html
+Redirect 301 /sofa-mattress-cleaning-dubai /sofa-and-mattress-deep-cleaning-services-uae.html
+Redirect 301 /swimming-pool-cleaning-services /swimming-pool-service-in-uae.html
+
+Redirect 301 /car-seat-cleaning-services-dubai /car-seat-cleaning-services.html
+
+# Remove index.html from URL
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s(.*)/index\.html [NC]
+RewriteRule ^ %1/ [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^www\. [NC]
+RewriteRule .* https://dhobeeuae.com%{REQUEST_URI} [R=301,L]
